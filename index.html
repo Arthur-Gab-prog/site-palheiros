@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rancho Fundo — Palheiros Artesanais</title>
+    <!-- Fontes do Google: Rye (Rústica/Campo) e Work Sans (Legibilidade) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rye&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Reset de estilos básicos */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #ebd9c0; /* Tom de palha seca / papel kraft claro */
+            font-family: 'Work Sans', sans-serif;
+            color: #362517; /* Marrom terra escuro */
+            overflow-x: hidden;
+        }
+
+        /* --- MENU DE NAVEGAÇÃO SUPERIOR --- */
+        .navbar {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+
+        .nav-logo {
+            font-family: 'Rye', serif;
+            font-size: 1.6rem;
+            color: #543419;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: #362517;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #87491d;
+        }
+
+        /* --- CONTAINER DE SEÇÃO --- */
+        .section-hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 100px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            padding: 40px;
+            position: relative;
+        }
+
+        /* --- COLUNA DA ESQUERDA (CONTEÚDO HERO) --- */
+        .content-left {
+            padding-right: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .subtitle {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: #87491d; /* Tom de barro cozido */
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            font-family: 'Rye', serif;
+            font-size: 4rem;
+            line-height: 1.1;
+            color: #261c14; /* Quase preto, tom fumo queimado */
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .description {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #4a3625;
+            max-width: 450px;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        /* Botões e Links de Ação Rústicos */
+        .cta-group {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .btn-explore {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #ebd9c0;
+            background-color: #543419; /* Botão cor de couro escuro */
+            border: 2px solid #543419;
+            padding: 16px 36px;
+            cursor: pointer;
+            box-shadow: 4px 4px 0px #261c14; /* Sombra sólida rústica */
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+        .btn-explore:hover {
+            background-color: transparent;
+            color: #543419;
+            box-shadow: 1px 1px 0px #261c14;
+            transform: translate(3px, 3px);
+        }
+
+        .link-discover {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #543419;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.3s ease;
+        }
+
+        .link-discover:hover {
+            color: #87491d;
+        }
+
+        /* --- COLUNA DA DIREITA (IMAGEM HERO) --- */
+        .content-right {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Moldura de couro/madeira com borda dupla */
+        .image-wrapper {
+            position: relative;
+            padding: 12px;
+            border: 4px double #543419;
+            background-color: #ebd9c0;
+        }
+
+        .main-image {
+            width: 100%;
+            max-width: 420px;
+            height: auto;
+            object-fit: cover;
+            display: block;
+            filter: sepia(0.2) contrast(1.05); /* Filtro sutil quente/antigo */
+        }
+
+        .main-image-craft {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            display: block;
+            border: 3px solid #543419;
+        }
+
+        /* --- DETALHE DO SCROLL --- */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .scroll-text {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: #87491d;
+            font-weight: 600;
+        }
+
+        .scroll-arrow {
+            font-size: 1rem;
+            color: #543419;
+            animation: bounce 2s infinite;
+        }
+
+        /* =========================================
+           --- SEÇÃO: TRÊS PILARES DO ARTESANATO ---
+           ========================================= */
+        .section-craft {
+            padding: 120px 0;
+            background-color: #261c14; /* Inversão para fundo escuro rústico */
+            color: #ebd9c0;
+            border-top: 4px double #543419;
+        }
+
+        .craft-header {
+            text-align: center;
+            margin-bottom: 90px;
+        }
+
+        .craft-header .subtitle {
+            color: #c4946e;
+        }
+
+        .craft-header h2 {
+            font-family: 'Rye', serif;
+            font-size: 2.8rem;
+            color: #ebd9c0;
+            text-transform: uppercase;
+        }
+
+        .craft-block {
+            margin-bottom: 120px;
+        }
+
+        .craft-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .craft-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .craft-grid.reverse {
+            grid-template-columns: 0.9fr 1.1fr;
+        }
+
+        .craft-image-container {
+            width: 100%;
+        }
+
+        /* Fallback visual rústico */
+        .craft-image-fallback {
+            width: 100%;
+            height: 380px;
+            background: #362517;
+            border: 3px dashed #543419;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #c4946e;
+            font-family: 'Rye', serif;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .craft-info {
+            padding-left: 20px;
+        }
+
+        .craft-grid.reverse .craft-info {
+            padding-left: 0;
+            padding-right: 40px;
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .craft-number {
+            font-family: 'Rye', serif;
+            font-size: 1.5rem;
+            color: #87491d;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .craft-info h3 {
+            font-family: 'Rye', serif;
+            font-size: 2rem;
+            color: #ebd9c0;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .craft-tag {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: #c4946e;
+            font-weight: 600;
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        .craft-text {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #d1beaa;
+            margin-bottom: 30px;
+            max-width: 440px;
+        }
+
+        .craft-divider {
+            width: 80px;
+            height: 2px;
+            background-color: #87491d;
+        }
+
+        /* =========================================
+           --- SEÇÃO: COLEÇÃO ---
+           ========================================= */
+        .section-collection {
+            position: relative;
+            padding: 140px 20px;
+            background-color: #ebd9c0;
+            text-align: center;
+            overflow: hidden;
+            border-top: 4px double #543419;
+        }
+
+        /* Texto sutil enorme correndo ao fundo */
+        .bg-watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Rye', serif;
+            font-size: 9vw;
+            color: #e0cca7;
+            white-space: nowrap;
+            z-index: 1;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .collection-content {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .collection-content .subtitle {
+            margin-bottom: 15px;
+        }
+
+        .collection-content h2 {
+            font-family: 'Rye', serif;
+            font-size: 2.8rem;
+            color: #261c14;
+            line-height: 1.2;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+
+        .collection-content p {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #543419;
+            margin-bottom: 40px;
+        }
+
+        /* Botão vazado elegante e rústico */
+        .btn-shop {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: #543419;
+            background: transparent;
+            border: 1px solid #543419;
+            padding: 18px 45px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-shop:hover {
+            background-color: #543419;
+            color: #ebd9c0;
+        }
+
+        /* =========================================
+           --- SEÇÃO: CONTATO E RODAPÉ RÚSTICO ---
+           ========================================= */
+        .section-contact {
+            background-color: #1a130e; /* Fumo escuro profundo */
+            color: #ebd9c0;
+            padding: 100px 0 40px 0;
+            border-top: 4px double #543419;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .contact-info-block h3 {
+            font-family: 'Rye', serif;
+            font-size: 2rem;
+            color: #ebd9c0;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .contact-info-block p {
+            font-family: 'Work Sans', sans-serif;
+            line-height: 1.8;
+            color: #bfae99;
+            margin-bottom: 30px;
+        }
+
+        .contact-details {
+            list-style: none;
+        }
+
+        .contact-details li {
+            margin-bottom: 15px;
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.95rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-details strong {
+            color: #c4946e;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 3px;
+        }
+
+        /* Formulário de Contato Rústico */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .form-group label {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #c4946e;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group textarea {
+            background-color: #261c14;
+            border: 1px solid #543419;
+            padding: 15px;
+            color: #ebd9c0;
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: #c4946e;
+        }
+
+        .btn-submit {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #261c14;
+            background-color: #ebd9c0;
+            border: 2px solid #ebd9c0;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background-color: transparent;
+            color: #ebd9c0;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 80px;
+            padding-top: 30px;
+            border-top: 1px solid #362517;
+            font-size: 0.75rem;
+            color: #6e5c4d;
+            letter-spacing: 0.05em;
+        }
+
+        /* --- ANIMAÇÕES E RESPONSIVIDADE --- */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-5px); }
+            60% { transform: translateY(-3px); }
+        }
+
+        @media (max-width: 900px) {
+            .navbar {
+                position: relative;
+                transform: none;
+                left: 0;
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px;
+            }
+            .section-hero {
+                min-height: auto;
+                padding-top: 40px;
+            }
+            .container, .craft-grid, .craft-grid.reverse, .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 20px;
+            }
+            .content-left, .craft-info, .craft-grid.reverse .craft-info {
+                padding-right: 0;
+                padding-left: 0;
+                text-align: center;
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+            }
+            .description, .craft-text {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .title {
+                font-size: 2.8rem;
+            }
+            .craft-header h2, .collection-content h2 {
+                font-size: 2rem;
+            }
+            .bg-watermark {
+                font-size: 14vw;
+            }
+            .scroll-indicator {
+                position: relative;
+                margin-top: 40px;
+                bottom: 0;
+            }
+            .craft-grid.reverse .craft-image-container {
+                order: 2;
+            }
+            .craft-grid.reverse .craft-info {
+                order: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Menu de Navegação Superior -->
+    <nav class="navbar">
+        <a href="#" class="nav-logo">Rancho Fundo</a>
+        <ul class="nav-links">
+            <li><a href="#artesanato">O Artesanato</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+    </nav>
+
+    <!-- PRIMEIRA SEÇÃO (HERO) -->
+    <main class="section-hero">
+        <div class="container">
+            
+            <!-- Coluna de Conteúdo/Texto -->
+            <section class="content-left">
+                <div class="subtitle">Tradição da Roça — Feito à Mão</div>
+                
+                <h1 class="title">
+                    O Legítimo<br>
+                    Cigarro de<br>
+                    Palha.
+                </h1>
+                
+                <p class="description">
+                    Fumo de corda picado e palhas selecionadas na lavoura, limpas e moldadas à mão. Uma arte transmitida de pai para filho que preserva o verdadeiro gosto da terra.
+                </p>
+                
+                <div class="cta-group">
+                    <button class="btn-explore" id="exploreBtn">Ver Palheiros</button>
+                    <a href="#artesanato" class="link-discover" id="discoverLink">
+                        Nossa Feitura <span class="arrow-down">↓</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Coluna da Imagem Principal -->
+            <section class="content-right">
+                <div class="image-wrapper">
+                    <img src="image_06d688.jpg" alt="Palheiro Artesanal Rancho Fundo" class="main-image">
+                </div>
+            </section>
+
+            <!-- Indicador de Rolagem -->
+            <div class="scroll-indicator">
+                <span class="scroll-text">Puxe para baixo</span>
+                <span class="scroll-arrow">↓</span>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- SEGUNDA SEÇÃO (TRÊS PILARES DO ARTESANATO) -->
+    <section class="section-craft" id="artesanato">
+        <div class="container-craft">
+            
+            <div class="craft-header">
+                <div class="subtitle">A Força da Terra</div>
+                <h2>Três Pilares do Nosso Palheiro</h2>
+            </div>
+
+            <!-- PILAR 01: A Colheita -->
+            <div class="craft-block">
+                <div class="container craft-grid">
+                    <div class="craft-image-container">
+                        <div class="craft-image-fallback">
+                            [ Imagem do Fumo de Corda e Lavoura ]
+                        </div>
+                    </div>
+
+                    <div class="craft-info">
+                        <span class="craft-number">01</span>
+                        <h3>A Colheita</h3>
+                        <span class="craft-tag">Fumo de Corda Selecionado</span>
+                        
+                        <p class="craft-text">
+                            Cada folha de fumo é colhida no tempo certo e curada no galpão de madeira. Picado bem fino na faca, nosso fumo mantém a umidade natural do campo, entregando um aroma encorpado, sem aditivos químicos.
+                        </p>
+                        
+                        <div class="craft-divider"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PILAR 02: A Palha -->
+            <div class="craft-block">
+                <div class="container craft-grid reverse">
+                    <div class="craft-info">
+                        <span class="craft-number">02</span>
+                        <h3>A Palha</h3>
+                        <span class="craft-tag">Palha de Milho de Primeira</span>
+                        
+                        <p class="craft-text">
+                            Nós selecionamos apenas palhas maleáveis, sedosas e bem tratadas vindas direto da roça. Passadas pelo processo de limpeza e corte artesanal, elas garantem uma queima contínua e suave.
+                        </p>
+                        
+                        <div class="craft-divider"></div>
+                    </div>
+
+                    <div class="craft-image-container">
+                        <img src="image_06ec16.png" alt="Palhas selecionadas e cortadas à mão" class="main-image-craft">
+                    </div>
+                </div>
+            </div>
+
+            <!-- PILAR 03: O Amarrado -->
+            <div class="craft-block">
+                <div class="container craft-grid">
+                    <div class="craft-image-container">
+                        <img src="image_073f7e.png" alt="O nó clássico do palheiro" class="main-image-craft">
+                    </div>
+
+                    <div class="craft-info">
+                        <span class="craft-number">03</span>
+                        <h3>O Amarrado</h3>
+                        <span class="craft-tag">Feito à Mão, Um a Um</span>
+                        
+                        <p class="craft-text">
+                            O fechamento é feito com a linha clássica, amarrada com a firmeza exata para que o fluxo do ar seja perfeito. Sem colas artificiais ou filtros industriais, valorizando a pureza do cigarro de roça.
+                        </p>
+                        
+                        <div class="craft-divider"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- TERCEIRA SEÇÃO: COLEÇÃO -->
+    <section class="section-collection" id="colecao">
+        <div class="bg-watermark">Respeite a Tradição</div>
+        
+        <div class="collection-content">
+            <div class="subtitle">Comece Sua Jornada</div>
+            <h2>Sinta o Gosto do Verdadeiro Artesanal</h2>
+            <p>
+                Faça parte de uma tradição secular que ignora a pressa da indústria. Cada palha selecionada a dedo, cada amarrado feito com calma e cada tragada que te leva direto de volta às origens do campo.
+            </p>
+            <button class="btn-shop" id="shopBtn">Abrir Catálogo</button>
+        </div>
+    </section>
+
+    <!-- QUARTA SEÇÃO: CONTATO E RODAPÉ -->
+    <footer class="section-contact" id="contato">
+        <div class="container contact-grid">
+            
+            <!-- Bloco de Informações -->
+            <div class="contact-info-block">
+                <h3>Chegue Junto</h3>
+                <p>Quer levar o legítimo palheiro do Rancho Fundo para o seu comércio ou tem alguma dúvida sobre a nossa feitura? Deixe seu recado ou use nossos canais de atendimento direto.</p>
+                
+                <ul class="contact-details">
+                    <li>
+                        <strong>O Rancho</strong>
+                        Piracanjuba - Goiás
+                    </li>
+                    <li>
+                        <strong>Alô da Roça</strong>
+                        (64) 99233-5023
+                    </li>
+                    <li>
+                        <strong>Correio Eletrônico</strong>
+                        contato@ranchofundopalheiros.com.br
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Formulário de Mensagem -->
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Seu Nome</label>
+                    <input type="text" id="name" required placeholder="Como lhe chamam?">
+                </div>
+                <div class="form-group">
+                    <label for="email">Seu E-mail / Zap</label>
+                    <input type="text" id="email" required placeholder="Para onde enviamos a resposta?">
+                </div>
+                <div class="form-group">
+                    <label for="message">Prosa / Mensagem</label>
+                    <textarea id="message" rows="5" required placeholder="Escreva aqui o seu recado..."></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Enviar Recado</button>
+            </form>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Rancho Fundo Palheiros Artesanais. Orgulhosamente feito no Brasil.</p>
+        </div>
+    </footer>
+
+    <!-- Lógica JavaScript para interações -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const exploreBtn = document.getElementById('exploreBtn');
+            const shopBtn = document.getElementById('shopBtn');
+            const discoverLink = document.getElementById('discoverLink');
+            const contactForm = document.getElementById('contactForm');
+
+            // Cliques nos botões de catálogo
+            const openCatalog = () => {
+                alert('Carregando nossa gaveta de palheiros selecionados do Rancho...');
+            };
+            
+            if (exploreBtn) exploreBtn.addEventListener('click', openCatalog);
+            if (shopBtn) shopBtn.addEventListener('click', openCatalog);
+
+            // Rolagem suave
+            if (discoverLink) {
+                discoverLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.querySelector('#artesanato').scrollIntoView({ behavior: 'smooth' });
+                });
+            }
+
+            // Envio do formulário para o WhatsApp
+            if (contactForm) {
+                contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault(); // Impede a página de recarregar
+                    
+                    // 1. Pegar os valores digitados pelo usuário
+                    const name = document.getElementById('name').value;
+                    const emailOrZap = document.getElementById('email').value;
+                    const message = document.getElementById('message').value;
+                    
+                    // 2. Definir o número do WhatsApp (Padrão: código do país + DDD + Número)
+                    const whatsappNumber = '5564992335023'; 
+                    
+                    // 3. Montar o texto da mensagem com quebras de linha amigáveis (\n)
+                    let textMessage = `*Novo Recado do Site - Rancho Fundo*\n\n`;
+                    textMessage += `*Nome:* ${name}\n`;
+                    textMessage += `*Contato:* ${emailOrZap}\n\n`;
+                    textMessage += `*Mensagem/Prosa:*\n${message}`;
+                    
+                    // 4. Codificar o texto para o formato de URL válido
+                    const encodedMessage = encodeURIComponent(textMessage);
+                    
+                    // 5. Criar o link completo da API do WhatsApp
+                    const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedMessage}`;
+                    
+                    // 6. Abrir o link em uma nova aba do navegador
+                    window.open(whatsappUrl, '_blank');
+                    
+                    // 7. Opcional: Limpar os campos do formulário após o disparo
+                    contactForm.reset();
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
